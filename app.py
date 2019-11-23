@@ -7,13 +7,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from aws_utils import save_to_s3, save_to_dynamo, update_in_dynamo, get_from_dynamo, query_dynamo, scan_dynamo
+from aws_utils import save_to_s3, save_to_dynamo, update_in_dynamo, get_from_dynamo, query_dynamo, scan_dynamo, delete_dynamo
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # CONSTANTS
-FILES_BUCKET = 'bridge-files'
+FILES_BUCKET = 'bridge-media'
 MESSAGES_TABLE = 'bridge-messages'
 USERS_TABLE = 'bridge-users'
 DEFAULT_KEY_NAME = '¡d'
@@ -59,7 +59,7 @@ def filter_unread(message):
 def targetStatus():
     if request.method == 'GET':
         print('/target_status GET')
-        response = query_dynamo('bridge-users', 'grandma', 'id')['Items'][0]
+        response = query_dynamo(USERS_TABLE, 'grandma', 'id')['Items'][0]
         return jsonify(response)
     elif request.method == 'PUT':
         print('/target_status PUT')
@@ -79,6 +79,17 @@ def calls():
         posted_data = request.get_json()
         update_in_dynamo(USERS_TABLE, {'id': 'grandson'}, posted_data)
         return jsonify({"status": "success"})
+
+
+@app.route("/clear")
+def clear():
+    update_in_dynamo(USERS_TABLE, {'id': 'grandson'}, {'calling': False})
+    update_in_dynamo(USERS_TABLE, {'id': 'grandma'}, {'status': 0})
+    messages = scan_dynamo_all(MESSAGES_TABLE)['Items']
+    print(messages)
+    for message in messages:
+        delete_dynamo(MESSAGES_TABLE, 'id', message['id'])
+    return 'success'
 
 
 def create_id(size=10, chars=string.ascii_uppercase + string.digits):

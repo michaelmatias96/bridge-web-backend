@@ -79,7 +79,20 @@ def scan_dynamo(table_name, attribute, value_to_equal):
     return response
 
 
+def scan_dynamo_all(table_name):
+    response = dynamodb.Table(table_name).scan()
+    return response
+
+
 def send_message_sqs(queue_name, body):
     queue = sqs.get_queue_by_name(QueueName=queue_name)
     response = queue.send_message(MessageBody=body)
     return response
+
+
+def delete_dynamo(table_name, key_name, key_value):
+    response = dynamodb.Table(table_name).delete_item(
+        Key={
+            key_name: key_value
+        }
+    )

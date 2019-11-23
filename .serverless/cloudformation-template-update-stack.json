@@ -19,7 +19,7 @@
     "AppLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/bridge-dev-app"
+        "LogGroupName": "/aws/lambda/bridge-app-dev-app"
       }
     },
     "IamRoleLambdaExecution": {
@@ -48,7 +48,7 @@
                 "-",
                 [
                   "dev",
-                  "bridge",
+                  "bridge-app",
                   "lambda"
                 ]
               ]
@@ -63,7 +63,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-app-dev*:*"
                     }
                   ]
                 },
@@ -74,7 +74,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-app-dev*:*:*"
                     }
                   ]
                 },
@@ -101,7 +101,7 @@
           "Fn::Join": [
             "-",
             [
-              "bridge",
+              "bridge-app",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -119,9 +119,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/bridge/dev/1574508189099-2019-11-23T11:23:09.099Z/bridge.zip"
+          "S3Key": "serverless/bridge-app/dev/1574538585352-2019-11-23T19:49:45.352Z/bridge-app.zip"
         },
-        "FunctionName": "bridge-dev-app",
+        "FunctionName": "bridge-app-dev-app",
         "Handler": "wsgi_handler.handler",
         "MemorySize": 1024,
         "Role": {
@@ -138,20 +138,20 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg": {
+    "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "XB7KQEIeZrfwCe7JeyXT0MjmPYUq1d7h63wFApoyWM8="
+        "CodeSha256": "VkTf8P84hx0fUi3/C7HDx7CtqOPlvshETb+tJYvCGRk="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-bridge",
+        "Name": "dev-bridge-app",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -263,7 +263,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1574508160552": {
+    "ApiGatewayDeployment1574538556653": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -323,7 +323,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg"
+        "Ref": "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38"
       }
     },
     "ServiceEndpoint": {

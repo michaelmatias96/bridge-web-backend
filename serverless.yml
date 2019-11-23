@@ -1,6 +1,6 @@
 # serverless.yml
 
-service: bridge
+service: bridge-app
 
 plugins:
   - serverless-python-requirements
@@ -18,7 +18,7 @@ provider:
   name: aws
   runtime: python3.6
   stage: dev
-  region: us-west-1
+  region: us-west-2
   iamRoleStatements:
     - Effect: Allow
       Action:

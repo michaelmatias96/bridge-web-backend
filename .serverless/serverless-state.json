@@ -1,15 +1,15 @@
 {
   "service": {
-    "service": "bridge",
+    "service": "bridge-app",
     "serviceObject": {
-      "name": "bridge"
+      "name": "bridge-app"
     },
     "provider": {
       "stage": "dev",
       "variableSyntax": "\\${([ ~:a-zA-Z0-9._@'\",\\-\\/\\(\\)*]+?)}",
       "name": "aws",
       "runtime": "python3.6",
-      "region": "us-west-1",
+      "region": "us-west-2",
       "iamRoleStatements": [
         {
           "Effect": "Allow",
@@ -49,7 +49,7 @@
           "AppLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/bridge-dev-app"
+              "LogGroupName": "/aws/lambda/bridge-app-dev-app"
             }
           },
           "IamRoleLambdaExecution": {
@@ -78,7 +78,7 @@
                       "-",
                       [
                         "dev",
-                        "bridge",
+                        "bridge-app",
                         "lambda"
                       ]
                     ]
@@ -93,7 +93,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-app-dev*:*"
                           }
                         ]
                       },
@@ -104,7 +104,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/bridge-app-dev*:*:*"
                           }
                         ]
                       },
@@ -123,7 +123,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "bridge",
+                    "bridge-app",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -141,9 +141,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bridge/dev/1574508189099-2019-11-23T11:23:09.099Z/bridge.zip"
+                "S3Key": "serverless/bridge-app/dev/1574538585352-2019-11-23T19:49:45.352Z/bridge-app.zip"
               },
-              "FunctionName": "bridge-dev-app",
+              "FunctionName": "bridge-app-dev-app",
               "Handler": "wsgi_handler.handler",
               "MemorySize": 1024,
               "Role": {
@@ -160,20 +160,20 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg": {
+          "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "XB7KQEIeZrfwCe7JeyXT0MjmPYUq1d7h63wFApoyWM8="
+              "CodeSha256": "VkTf8P84hx0fUi3/C7HDx7CtqOPlvshETb+tJYvCGRk="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-bridge",
+              "Name": "dev-bridge-app",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -285,7 +285,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1574508160552": {
+          "ApiGatewayDeployment1574538556653": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -345,7 +345,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg"
+              "Ref": "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38"
             }
           },
           "ServiceEndpoint": {
@@ -428,7 +428,7 @@
             "http": "ANY {proxy+}"
           }
         ],
-        "name": "bridge-dev-app",
+        "name": "bridge-app-dev-app",
         "package": {},
         "memory": 1024,
         "timeout": 6,
@@ -438,10 +438,10 @@
     },
     "serviceFilename": "serverless.yml",
     "layers": {},
-    "artifact": "/Users/tiagohernan/Documents/Projects/YC Hackathon/bridge-web-backend/.serverless/bridge.zip"
+    "artifact": "/Users/tiagohernan/Documents/Projects/YC Hackathon/bridge-web-backend/.serverless/bridge-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/bridge/dev/1574508189099-2019-11-23T11:23:09.099Z",
-    "artifact": "bridge.zip"
+    "artifactDirectoryName": "serverless/bridge-app/dev/1574538585352-2019-11-23T19:49:45.352Z",
+    "artifact": "bridge-app.zip"
   }
 }
