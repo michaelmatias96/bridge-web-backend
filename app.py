@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import boto3
 from boto3.dynamodb.conditions import Key, Attr
-from aws_utils import save_to_s3, save_to_dynamo, update_in_dynamo, get_from_dynamo, query_dynamo, scan_dynamo, delete_dynamo
+from aws_utils import save_to_s3, save_to_dynamo, update_in_dynamo, get_from_dynamo, query_dynamo, scan_dynamo, scan_dynamo_all, delete_dynamo
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -24,7 +24,8 @@ DEFAULT_USER = 'grandma'
 def messages():
     if request.method == 'GET':
         print('/messages GET')
-        source = int(request.args.get('source'))
+        #source = int(request.args.get('source'))
+        source = "grandson"
         messages = scan_dynamo(MESSAGES_TABLE, 'source', source)['Items']
         messages = list(filter(filter_unread, messages))
         messages = json.loads(simplejson.dumps(messages, use_decimal=True))
@@ -81,12 +82,12 @@ def calls():
         return jsonify({"status": "success"})
 
 
-@app.route("/clear")
+@app.route("/clear", methods=['GET', 'POST'])
 def clear():
+    print('/clear')
     update_in_dynamo(USERS_TABLE, {'id': 'grandson'}, {'calling': False})
     update_in_dynamo(USERS_TABLE, {'id': 'grandma'}, {'status': 0})
     messages = scan_dynamo_all(MESSAGES_TABLE)['Items']
-    print(messages)
     for message in messages:
         delete_dynamo(MESSAGES_TABLE, 'id', message['id'])
     return 'success'

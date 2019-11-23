@@ -141,7 +141,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bridge-app/dev/1574538585352-2019-11-23T19:49:45.352Z/bridge-app.zip"
+                "S3Key": "serverless/bridge-app/dev/1574541897479-2019-11-23T20:44:57.479Z/bridge-app.zip"
               },
               "FunctionName": "bridge-app-dev-app",
               "Handler": "wsgi_handler.handler",
@@ -160,14 +160,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38": {
+          "AppLambdaVersionORwFZIffttcsqx1AkcCD3nwhs86yDH1Aca59z8TbV1U": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "VkTf8P84hx0fUi3/C7HDx7CtqOPlvshETb+tJYvCGRk="
+              "CodeSha256": "uAjfuqP3CXPWZewiIlKisbfO8PAhdxoQP4Cb/j9l8hU="
             }
           },
           "ApiGatewayRestApi": {
@@ -285,7 +285,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1574538556653": {
+          "ApiGatewayDeployment1574541867027": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -345,7 +345,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionN5RBk3FUGUXTjTicvwNMXPm0kZzJfWvJQY94kOXE38"
+              "Ref": "AppLambdaVersionORwFZIffttcsqx1AkcCD3nwhs86yDH1Aca59z8TbV1U"
             }
           },
           "ServiceEndpoint": {
@@ -441,7 +441,7 @@
     "artifact": "/Users/tiagohernan/Documents/Projects/YC Hackathon/bridge-web-backend/.serverless/bridge-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/bridge-app/dev/1574538585352-2019-11-23T19:49:45.352Z",
+    "artifactDirectoryName": "serverless/bridge-app/dev/1574541897479-2019-11-23T20:44:57.479Z",
     "artifact": "bridge-app.zip"
   }
 }
