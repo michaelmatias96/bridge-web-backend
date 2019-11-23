@@ -1,0 +1,27 @@
+{
+  "name": "bridge-web-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmatias96/bridge-web-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelmatias96/bridge-web-backend/issues"
+  },
+  "homepage": "https://github.com/michaelmatias96/bridge-web-backend#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^5.0.1",
+    "serverless-wsgi": "^1.7.4"
+  },
+  "dependencies": {
+    "serverless": "^1.58.0"
+  }
+}
