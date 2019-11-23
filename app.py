@@ -58,12 +58,26 @@ def filter_unread(message):
 @app.route("/target_status", methods=['GET', 'PUT'])
 def targetStatus():
     if request.method == 'GET':
+        print('/target_status GET')
         response = query_dynamo('bridge-users', 'grandma', 'id')['Items'][0]
-        print(response)
         return jsonify(response)
     elif request.method == 'PUT':
+        print('/target_status PUT')
         posted_data = request.get_json()
         update_in_dynamo(USERS_TABLE, {'id': DEFAULT_USER}, posted_data)
+        return jsonify({"status": "success"})
+
+
+@app.route("/calls", methods=['GET', 'PUT'])
+def calls():
+    if request.method == 'GET':
+        print('/calls GET')
+        response = query_dynamo('bridge-users', 'grandson', 'id')['Items'][0]
+        return jsonify(response)
+    elif request.method == 'PUT':
+        print('/calls PUT')
+        posted_data = request.get_json()
+        update_in_dynamo(USERS_TABLE, {'id': 'grandson'}, posted_data)
         return jsonify({"status": "success"})
 
 

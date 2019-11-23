@@ -141,7 +141,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/bridge/dev/1574502751568-2019-11-23T09:52:31.568Z/bridge.zip"
+                "S3Key": "serverless/bridge/dev/1574508189099-2019-11-23T11:23:09.099Z/bridge.zip"
               },
               "FunctionName": "bridge-dev-app",
               "Handler": "wsgi_handler.handler",
@@ -160,14 +160,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionm7z1PoNqwRjD7f1C3ajenfAiX1QwfNzQrmOqS7I80": {
+          "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "rRkb2t4tbWjJXnoeP0s7v+Wt1wAr/xunNXhOiZcLXAk="
+              "CodeSha256": "XB7KQEIeZrfwCe7JeyXT0MjmPYUq1d7h63wFApoyWM8="
             }
           },
           "ApiGatewayRestApi": {
@@ -285,7 +285,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1574502669268": {
+          "ApiGatewayDeployment1574508160552": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -345,7 +345,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionm7z1PoNqwRjD7f1C3ajenfAiX1QwfNzQrmOqS7I80"
+              "Ref": "AppLambdaVersionfv6WUJQ95EV5IWa00OPD85L0KNftujSyM6hH2Hjg"
             }
           },
           "ServiceEndpoint": {
@@ -422,12 +422,10 @@
         "handler": "wsgi_handler.handler",
         "events": [
           {
-            "http": "ANY /",
-            "cors": true
+            "http": "ANY /"
           },
           {
-            "http": "ANY {proxy+}",
-            "cors": true
+            "http": "ANY {proxy+}"
           }
         ],
         "name": "bridge-dev-app",
@@ -443,7 +441,7 @@
     "artifact": "/Users/tiagohernan/Documents/Projects/YC Hackathon/bridge-web-backend/.serverless/bridge.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/bridge/dev/1574502751568-2019-11-23T09:52:31.568Z",
+    "artifactDirectoryName": "serverless/bridge/dev/1574508189099-2019-11-23T11:23:09.099Z",
     "artifact": "bridge.zip"
   }
 }
