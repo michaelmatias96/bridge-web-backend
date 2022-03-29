@@ -16,7 +16,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.3
 jmespath==0.9.4
 MarkupSafe==1.1.1
-paramiko==2.6.0
+paramiko==2.10.1
 prettytable==0.7.2
 pyasn1==0.4.8
 pycparser==2.19
